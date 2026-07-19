@@ -276,20 +276,26 @@ function closeModal() {
 modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeModal));
 document.addEventListener("keydown", (e) => e.key === "Escape" && closeModal());
 
-/* ---------- Mobile "view on desktop" tip ---------- */
+/* ---------- Mobile "view on desktop" tip (built only on phones) ---------- */
 (function mobileTip() {
-  const tip = document.getElementById("mobileTip");
-  if (!tip) return;
-  if (!window.matchMedia("(max-width: 720px)").matches) return;   // phones only
+  if (!window.matchMedia("(max-width: 720px)").matches) return;   // phones only — never created on desktop
   try { if (sessionStorage.getItem("mobileTipDismissed")) return; } catch (e) {}
+
+  const tip = document.createElement("div");
+  tip.className = "mobile-tip";
+  tip.setAttribute("role", "status");
+  tip.innerHTML =
+    '<span class="mobile-tip__ico">🖥️</span>' +
+    '<p>For the full cinematic experience, view this portfolio on a <strong>laptop or desktop</strong> — but feel free to explore here too.</p>' +
+    '<button class="mobile-tip__close" aria-label="Dismiss">✕</button>';
+  document.body.appendChild(tip);
 
   const hide = () => tip.classList.remove("is-show");
   const dismiss = () => { hide(); try { sessionStorage.setItem("mobileTipDismissed", "1"); } catch (e) {} };
 
-  setTimeout(() => tip.classList.add("is-show"), 1200);   // slide up shortly after load
-  setTimeout(hide, 10000);                                 // auto-hide after 10s
-  const btn = document.getElementById("mobileTipClose");
-  if (btn) btn.addEventListener("click", dismiss);
+  requestAnimationFrame(() => setTimeout(() => tip.classList.add("is-show"), 1200)); // slide up after load
+  setTimeout(hide, 10000);                                                            // auto-hide after 10s
+  tip.querySelector(".mobile-tip__close").addEventListener("click", dismiss);
 })();
 
 /* ---------- Kick off reveals after dynamic content is injected ---------- */
