@@ -1,0 +1,12 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.vscode/
+.idea/
+
+# Keep media folders tracked, but ignore raw/uncompressed source clips
+*.mov
+*.MOV
+*_raw.mp4
