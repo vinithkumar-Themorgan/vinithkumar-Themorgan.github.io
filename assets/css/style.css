@@ -243,7 +243,13 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 
 /* ---------- Skills ---------- */
 /* ---------- Skills meme panel ---------- */
-.skills__meme { display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 40px); align-items: center; margin-bottom: 40px; padding: clamp(18px, 3vw, 28px); background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-md); }
+.skills__meme { position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 40px); align-items: center; margin-bottom: 40px; padding: clamp(18px, 3vw, 28px); border: 1px solid var(--line-2); border-radius: var(--r-md); box-shadow: var(--shadow);
+  background:
+    radial-gradient(520px 240px at 100% 0%, rgba(0,191,231,0.16), transparent 60%),
+    radial-gradient(520px 260px at 0% 100%, rgba(250,173,59,0.14), transparent 60%),
+    radial-gradient(400px 300px at 60% 120%, rgba(124,77,219,0.12), transparent 60%),
+    linear-gradient(120deg, #f4f1fc, #eaf3fb); }
+.skills__meme::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-fuse); }
 .skills__meme-img { position: relative; width: clamp(160px, 24vw, 240px); flex-shrink: 0; border-radius: var(--r-sm); overflow: hidden; box-shadow: var(--shadow); background: linear-gradient(135deg, #1a1140, #241a52); }
 .skills__meme-img img { width: 100%; height: auto; display: block; }
 .skills__meme-fallback { display: none; text-align: center; padding: 40px 16px; color: var(--paper-dim); font-size: 2rem; }
