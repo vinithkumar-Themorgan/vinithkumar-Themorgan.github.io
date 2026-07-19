@@ -243,14 +243,14 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 
 /* ---------- Skills ---------- */
 /* ---------- Skills meme panel ---------- */
-.skills__meme { position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 40px); align-items: center; margin-bottom: 40px; padding: clamp(20px, 3vw, 32px); border: 1px solid rgba(255,255,255,.12); border-radius: var(--r-md); box-shadow: var(--shadow-lg);
+.skills__meme { position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 40px); align-items: center; margin-bottom: 40px; padding: clamp(20px, 3vw, 32px); border: 1px solid var(--line-2); border-radius: var(--r-md); box-shadow: var(--shadow);
   background:
-    radial-gradient(560px 300px at 100% 0%, rgba(0,191,231,0.28), transparent 60%),
-    radial-gradient(520px 320px at 0% 100%, rgba(250,173,59,0.22), transparent 60%),
-    radial-gradient(460px 360px at 55% 130%, rgba(124,77,219,0.30), transparent 60%),
-    linear-gradient(150deg, #0d0722, #171033); }
+    radial-gradient(540px 280px at 100% 0%, rgba(0,191,231,0.22), transparent 62%),
+    radial-gradient(520px 300px at 0% 100%, rgba(250,173,59,0.20), transparent 62%),
+    radial-gradient(440px 320px at 55% 130%, rgba(124,77,219,0.18), transparent 62%),
+    linear-gradient(150deg, #eef4fd, #f4ecfb); }
 .skills__meme::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-fuse); }
-.skills__meme .hl { color: var(--gold-2); }
+.skills__meme .hl { color: var(--accent-deep); }
 .skills__meme-img { position: relative; width: clamp(160px, 24vw, 240px); flex-shrink: 0; border-radius: var(--r-sm); overflow: hidden; box-shadow: var(--shadow); background: linear-gradient(135deg, #1a1140, #241a52); }
 .skills__meme-img img { width: 100%; height: auto; display: block; }
 .skills__meme-fallback { display: none; text-align: center; padding: 40px 16px; color: var(--paper-dim); font-size: 2rem; }
@@ -258,8 +258,8 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 .skills__meme-fallback code { color: var(--cyan-2); }
 .skills__meme-img.is-empty { aspect-ratio: 3 / 4; }
 .skills__meme-img.is-empty .skills__meme-fallback { display: grid; place-content: center; }
-.skills__meme figcaption { color: var(--paper-dim); font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.55; }
-.skills__meme-quote { display: block; font-family: var(--font-head); font-weight: 700; font-size: clamp(1.3rem, 3vw, 2rem); color: #fff; letter-spacing: -.4px; margin-bottom: 10px; }
+.skills__meme figcaption { color: var(--ink-2); font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.55; }
+.skills__meme-quote { display: block; font-family: var(--font-head); font-weight: 700; font-size: clamp(1.3rem, 3vw, 2rem); color: var(--ink); letter-spacing: -.4px; margin-bottom: 10px; }
 @media (max-width: 640px) { .skills__meme { grid-template-columns: 1fr; text-align: center; justify-items: center; } }
 
 .skills__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
@@ -344,6 +344,17 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 .lightbox img { position: relative; max-width: 100%; max-height: 92vh; border-radius: 12px; box-shadow: 0 40px 100px rgba(0,0,0,.6); animation: modalIn .3s var(--ease); }
 .lightbox__close { position: absolute; top: 18px; right: 22px; z-index: 3; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: rgba(13,7,34,.7); color: #fff; font-size: 1.1rem; cursor: pointer; backdrop-filter: blur(6px); transition: .2s; }
 .lightbox__close:hover { background: var(--accent); color: #04121a; border-color: transparent; }
+
+/* ---------- Mobile "view on desktop" tip ---------- */
+.mobile-tip { position: fixed; left: 12px; right: 12px; bottom: 14px; z-index: 350; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; background: linear-gradient(150deg, #0d0722, #171033); border: 1px solid rgba(255,255,255,.14); box-shadow: 0 18px 50px rgba(0,0,0,.5); color: var(--paper-text); transform: translateY(170%); opacity: 0; pointer-events: none; transition: transform .45s var(--ease), opacity .45s; }
+.mobile-tip::before { content: ''; position: absolute; top: 0; left: 16px; right: 16px; height: 2px; background: var(--grad-fuse); border-radius: 2px; }
+.mobile-tip.is-show { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.mobile-tip__ico { font-size: 1.5rem; flex-shrink: 0; }
+.mobile-tip p { font-size: .84rem; line-height: 1.45; color: var(--paper-dim); margin: 0; }
+.mobile-tip p strong { color: #fff; }
+.mobile-tip__close { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; cursor: pointer; font-size: .78rem; }
+.mobile-tip__close:hover { background: var(--accent); color: #04121a; border-color: transparent; }
+@media (min-width: 721px) { .mobile-tip { display: none; } }
 
 /* ---------- Testimonials (on dark band) ---------- */
 .tgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }

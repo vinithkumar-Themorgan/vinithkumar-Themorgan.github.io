@@ -276,5 +276,21 @@ function closeModal() {
 modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeModal));
 document.addEventListener("keydown", (e) => e.key === "Escape" && closeModal());
 
+/* ---------- Mobile "view on desktop" tip ---------- */
+(function mobileTip() {
+  const tip = document.getElementById("mobileTip");
+  if (!tip) return;
+  if (!window.matchMedia("(max-width: 720px)").matches) return;   // phones only
+  try { if (sessionStorage.getItem("mobileTipDismissed")) return; } catch (e) {}
+
+  const hide = () => tip.classList.remove("is-show");
+  const dismiss = () => { hide(); try { sessionStorage.setItem("mobileTipDismissed", "1"); } catch (e) {} };
+
+  setTimeout(() => tip.classList.add("is-show"), 1200);   // slide up shortly after load
+  setTimeout(hide, 10000);                                 // auto-hide after 10s
+  const btn = document.getElementById("mobileTipClose");
+  if (btn) btn.addEventListener("click", dismiss);
+})();
+
 /* ---------- Kick off reveals after dynamic content is injected ---------- */
 observeReveals();
