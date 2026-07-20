@@ -262,8 +262,8 @@ var PROJECTS = [
       "Experimentally validated — more stable, accurate heart & respiration readings",
     ],
     tech: ["mmWave Radar", "Waveguide Design", "RF Analysis", "MR60BH2", "Beam Shaping"],
-    thumb: "assets/media/thumbs/234.jpg",
-    video: null, gallery: ["assets/media/img/234.jpg"], links: [],
+    thumb: "assets/media/thumbs/245.jpg",
+    video: null, gallery: ["assets/media/img/245.jpg"], links: [],
   },
   {
     category: "vision", catLabel: "AI & Vision",
