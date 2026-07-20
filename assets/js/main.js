@@ -239,18 +239,24 @@ function closeLightbox() {
 /* ---------- Modal ---------- */
 const modal = document.getElementById("modal");
 
-function buildMedia(video) {
-  if (!video) return `<div class="modal__media-empty">🤖 &nbsp;Demo video coming soon</div>`;
-  if (video.type === "youtube")
-    return `<iframe src="https://www.youtube.com/embed/${video.id}" title="Project video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>`;
-  return `<video src="${video.src}" controls playsinline preload="metadata"
-            onerror="this.outerHTML='&lt;div class=\\'modal__media-empty\\'&gt;🎬 Add video: ${video.src}&lt;/div&gt;'"></video>`;
+function buildMedia(p) {
+  const video = p.video;
+  if (video) {
+    if (video.type === "youtube")
+      return `<iframe src="https://www.youtube.com/embed/${video.id}" title="Project video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>`;
+    return `<video src="${video.src}" controls playsinline preload="metadata"
+              onerror="this.outerHTML='&lt;div class=\\'modal__media-empty\\'&gt;🎬 Add video: ${video.src}&lt;/div&gt;'"></video>`;
+  }
+  // No video? Show the first gallery image as the hero (object-fit: contain so diagrams aren't cropped).
+  if (p.gallery && p.gallery.length)
+    return `<img src="${p.gallery[0]}" alt="${p.title}" style="width:100%;height:100%;object-fit:contain;background:#0d0722">`;
+  return `<div class="modal__media-empty">🤖 &nbsp;Demo coming soon</div>`;
 }
 
 function openModal(p) {
-  document.getElementById("modalMedia").innerHTML = buildMedia(p.video);
+  document.getElementById("modalMedia").innerHTML = buildMedia(p);
   document.getElementById("modalCat").textContent = p.catLabel;
   document.getElementById("modalTitle").textContent = p.title;
   document.getElementById("modalMeta").textContent = p.meta || "";
@@ -260,7 +266,8 @@ function openModal(p) {
   document.getElementById("modalDesc").textContent = p.description;
   document.getElementById("modalHighlights").innerHTML = (p.highlights || []).map((h) => `<li>${h}</li>`).join("");
   document.getElementById("modalTech").innerHTML = (p.tech || []).map((t) => `<span class="tag">${t}</span>`).join("");
-  document.getElementById("modalGallery").innerHTML = (p.gallery || []).map((g) =>
+  const galImgs = p.video ? (p.gallery || []) : (p.gallery || []).slice(1); // slice: hero already shows img[0]
+  document.getElementById("modalGallery").innerHTML = galImgs.map((g) =>
     `<img src="${g}" alt="" loading="lazy" onerror="this.style.display='none'">`).join("");
   document.getElementById("modalLinks").innerHTML = (p.links || []).map((l) =>
     `<a class="btn btn--light btn--sm" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a>`).join("");
