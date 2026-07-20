@@ -249,14 +249,42 @@ function buildMedia(p) {
     return `<video src="${video.src}" controls playsinline preload="metadata"
               onerror="this.outerHTML='&lt;div class=\\'modal__media-empty\\'&gt;🎬 Add video: ${video.src}&lt;/div&gt;'"></video>`;
   }
-  // No video? Show the first gallery image as the hero (object-fit: contain so diagrams aren't cropped).
-  if (p.gallery && p.gallery.length)
-    return `<img src="${p.gallery[0]}" alt="${p.title}" style="width:100%;height:100%;object-fit:contain;background:#0d0722">`;
+  // No video? Show a swipeable image carousel (scroll / arrows to move between images).
+  const imgs = p.gallery || [];
+  if (imgs.length) {
+    const slides = imgs.map((src) =>
+      `<div class="carousel__slide"><img src="${src}" alt="${p.title}" loading="lazy"></div>`).join("");
+    const multi = imgs.length > 1;
+    return `<div class="carousel">
+      <div class="carousel__track">${slides}</div>
+      ${multi ? `<button class="carousel__btn carousel__btn--prev" aria-label="Previous image">‹</button>
+      <button class="carousel__btn carousel__btn--next" aria-label="Next image">›</button>
+      <div class="carousel__count"><span class="carousel__idx">1</span> / ${imgs.length}</div>` : ""}
+    </div>`;
+  }
   return `<div class="modal__media-empty">🤖 &nbsp;Demo coming soon</div>`;
 }
 
+/* Wire up the modal image carousel (arrows + scroll-snap counter) */
+function initCarousel(root) {
+  const car = root.querySelector(".carousel");
+  if (!car) return;
+  const track = car.querySelector(".carousel__track");
+  const idx = car.querySelector(".carousel__idx");
+  const prev = car.querySelector(".carousel__btn--prev");
+  const next = car.querySelector(".carousel__btn--next");
+  const step = (dir) => track.scrollBy({ left: dir * track.clientWidth, behavior: "smooth" });
+  if (prev) prev.addEventListener("click", () => step(-1));
+  if (next) next.addEventListener("click", () => step(1));
+  if (idx) track.addEventListener("scroll", () => {
+    idx.textContent = Math.round(track.scrollLeft / track.clientWidth) + 1;
+  });
+}
+
 function openModal(p) {
-  document.getElementById("modalMedia").innerHTML = buildMedia(p);
+  const media = document.getElementById("modalMedia");
+  media.innerHTML = buildMedia(p);
+  initCarousel(media);
   document.getElementById("modalCat").textContent = p.catLabel;
   document.getElementById("modalTitle").textContent = p.title;
   document.getElementById("modalMeta").textContent = p.meta || "";
@@ -266,7 +294,8 @@ function openModal(p) {
   document.getElementById("modalDesc").textContent = p.description;
   document.getElementById("modalHighlights").innerHTML = (p.highlights || []).map((h) => `<li>${h}</li>`).join("");
   document.getElementById("modalTech").innerHTML = (p.tech || []).map((t) => `<span class="tag">${t}</span>`).join("");
-  const galImgs = p.video ? (p.gallery || []) : (p.gallery || []).slice(1); // slice: hero already shows img[0]
+  // Below-grid: only for video projects (image projects use the carousel above for all images)
+  const galImgs = p.video ? (p.gallery || []) : [];
   document.getElementById("modalGallery").innerHTML = galImgs.map((g) =>
     `<img src="${g}" alt="" loading="lazy" onerror="this.style.display='none'">`).join("");
   document.getElementById("modalLinks").innerHTML = (p.links || []).map((l) =>
