@@ -187,7 +187,8 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 .band__thumbs span { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; font-size: .9rem; font-weight: 500; color: var(--accent-deep); border-radius: 999px; background: var(--surface-2); }
 
 /* margin-top pulls the photo UP into the heading row — make it more negative to raise it further, less/0 to lower it */
-.about__photo { position: relative; aspect-ratio: 4 / 5; border-radius: var(--r-md); overflow: hidden; background: linear-gradient(135deg, #1a1140, #241a52); border: 1px solid var(--line-2); box-shadow: var(--shadow-lg); align-self: center; }
+/* margin-top pulls the photo UP toward the heading — more negative = higher, 0 = normal */
+.about__photo { position: relative; aspect-ratio: 4 / 5; border-radius: var(--r-md); overflow: hidden; background: linear-gradient(135deg, #1a1140, #241a52); border: 1px solid var(--line-2); box-shadow: var(--shadow-lg); align-self: start; margin-top: -150px; }
 /* Experience & education — timeline beside a hands-on photo */
 .exp__grid { display: grid; grid-template-columns: 1fr 360px; gap: clamp(28px, 4vw, 56px); align-items: start; }
 .exp__photo { position: sticky; top: 100px; }
