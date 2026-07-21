@@ -263,7 +263,7 @@ var PROJECTS = [
     ],
     tech: ["mmWave Radar", "Waveguide Design", "RF Analysis", "MR60BH2", "Beam Shaping"],
     thumb: "assets/media/thumbs/245.jpg",
-    video: null, gallery: ["assets/media/img/234.jpg", "assets/media/img/245.jpg", "assets/media/img/waveguide-hw1.jpg", "assets/media/img/waveguide-hw2.jpg", "assets/media/img/waveguide-hw3.jpg"], links: [],
+    video: null, gallery: ["assets/media/img/234.jpg", "assets/media/img/245.jpg"], links: [],
   },
   {
     category: "vision", catLabel: "AI & Vision",

@@ -188,10 +188,12 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 
 /* margin-top pulls the photo UP into the heading row — make it more negative to raise it further, less/0 to lower it */
 .about__photo { position: relative; aspect-ratio: 4 / 5; border-radius: var(--r-md); overflow: hidden; background: linear-gradient(135deg, #1a1140, #241a52); border: 1px solid var(--line-2); box-shadow: var(--shadow-lg); align-self: center; }
-/* Hands-on action photo below the About grid */
-.about__action { margin: 34px auto 0; max-width: 640px; }
-.about__action img { width: 100%; display: block; border-radius: var(--r-md); border: 1px solid var(--line-2); box-shadow: var(--shadow); }
-.about__action figcaption { margin-top: 12px; text-align: center; font-family: var(--font-mono); font-size: .82rem; color: var(--muted); }
+/* Experience & education — timeline beside a hands-on photo */
+.exp__grid { display: grid; grid-template-columns: 1fr 360px; gap: clamp(28px, 4vw, 56px); align-items: start; }
+.exp__photo { position: sticky; top: 100px; }
+.exp__photo img { width: 100%; display: block; border-radius: var(--r-md); border: 1px solid var(--line-2); box-shadow: var(--shadow); }
+.exp__photo figcaption { margin-top: 12px; font-family: var(--font-mono); font-size: .82rem; color: var(--muted); line-height: 1.4; }
+@media (max-width: 900px) { .exp__grid { grid-template-columns: 1fr; } .exp__photo { position: static; max-width: 480px; order: -1; } }
 .about__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .about__photo::after { content: ''; position: absolute; inset: 12px; border: 1px dashed rgba(255,255,255,.28); border-radius: calc(var(--r-md) - 12px); pointer-events: none; z-index: 2; }
 .about__photo-fallback { display: none; position: absolute; inset: 0; place-items: center; text-align: center; font-size: 3rem; color: var(--paper-dim); padding: 20px; }
