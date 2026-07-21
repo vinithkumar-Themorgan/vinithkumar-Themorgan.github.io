@@ -250,7 +250,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 
 /* ---------- Skills ---------- */
 /* ---------- Skills meme panel ---------- */
-.skills__meme { position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 40px); align-items: center; margin-bottom: 40px; padding: clamp(20px, 3vw, 32px); border: 2px solid rgba(0,191,231,.35); border-radius: var(--r-md); box-shadow: var(--shadow-lg), 0 0 40px rgba(0,191,231,.13);
+.skills__meme { position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 40px); align-items: center; margin-bottom: 40px; padding: clamp(20px, 3vw, 32px); border: 2px solid var(--ink); border-radius: var(--r-md); box-shadow: var(--shadow-lg);
   background:
     radial-gradient(540px 280px at 100% 0%, rgba(0,191,231,0.22), transparent 62%),
     radial-gradient(520px 300px at 0% 100%, rgba(250,173,59,0.20), transparent 62%),
