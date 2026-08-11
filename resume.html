@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Vinith Kumar T — Resume</title>
+<style>
+  @page { size: A4; margin: 8mm 13mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --accent: #0a6e86; --ink: #1c2733; --muted: #5c6b7a; --line: #d7dee5; }
+  body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 9.5pt; line-height: 1.25; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Header */
+  .head { border-bottom: 2.5px solid var(--accent); padding-bottom: 5px; margin-bottom: 7px; }
+  .name { font-size: 23pt; font-weight: 700; letter-spacing: .5px; color: var(--ink); line-height: 1.05; }
+  .role { font-size: 11.5pt; font-weight: 600; color: var(--accent); margin-top: 2px; letter-spacing: .4px; }
+  .contact { font-size: 8.6pt; color: var(--muted); margin-top: 5px; }
+  .contact a { color: var(--muted); text-decoration: none; }
+  .contact .sep { color: var(--line); margin: 0 7px; }
+
+  h2 { font-size: 10.5pt; text-transform: uppercase; letter-spacing: 1.3px; color: var(--accent); border-bottom: 1px solid var(--line); padding-bottom: 3px; margin: 7px 0 4px; }
+
+  .sum { color: #33414f; }
+
+  /* Entry (experience / education) */
+  .entry { margin-bottom: 4px; }
+  .entry__top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .entry__role { font-weight: 700; font-size: 10.6pt; }
+  .entry__org { font-weight: 600; color: var(--accent); }
+  .entry__meta { font-size: 8.8pt; color: var(--muted); white-space: nowrap; text-align: right; }
+  ul { list-style: none; margin: 3px 0 0; }
+  ul li { position: relative; padding-left: 13px; margin-bottom: 1px; color: #33414f; }
+  ul li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 8pt; top: 1px; }
+
+  /* Projects */
+  .proj { margin-bottom: 4px; }
+  .proj b { color: var(--ink); }
+  .proj .tag { display: inline-block; font-size: 8pt; font-weight: 700; color: var(--accent); background: #e7f1f4; padding: 1px 7px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+  .proj p { color: #40505f; }
+
+  /* Skills */
+  .skill { margin-bottom: 2px; display: flex; gap: 8px; }
+  .skill .k { flex: 0 0 138px; font-weight: 700; color: var(--ink); }
+  .skill .v { color: #40505f; }
+
+  /* Achievements two-col */
+  .ach { columns: 2; column-gap: 26px; }
+  .ach li { break-inside: avoid; margin-bottom: 3px; }
+
+  .edu-meta { font-size: 8.8pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+  <div class="head">
+    <div class="name">VINITH KUMAR T</div>
+    <div class="role">Full-Stack Robotics &amp; Autonomous Systems Engineer</div>
+    <div class="contact">
+      Dharmapuri, Tamil Nadu, India
+      <span class="sep">|</span> +91 XXXXX XXXXX
+      <span class="sep">|</span> robologautomation@gmail.com
+      <span class="sep">|</span> linkedin.com/in/vinith-kumar-t
+      <span class="sep">|</span> github.com/vinithkumar-Themorgan
+      <span class="sep">|</span> vinithkumar-themorgan.github.io
+    </div>
+  </div>
+
+  <h2>Summary</h2>
+  <p class="sum">Full-Stack Robotics Engineer with 2+ years building autonomous systems end to end — mechanical design &amp; fabrication, embedded electronics, ROS/ROS2 autonomy, computer vision, and RF. National hackathon winner (KAVACH 2023), patent applicant, and published author, delivering AMRs, drones, six-axis manipulators and RF hardware from concept to reliable deployment.</p>
+
+  <h2>Experience</h2>
+  <div class="entry">
+    <div class="entry__top">
+      <div><span class="entry__role">Robotics Engineer — Full-Stack Robotics &amp; Autonomous Systems</span>, <span class="entry__org">Robolog Automation</span></div>
+      <div class="entry__meta">Jun 2024 – Present · Dharmapuri, TN</div>
+    </div>
+    <ul>
+      <li>Build autonomous systems end to end — mechanical, electronics, embedded firmware, ROS/ROS2 autonomy, computer vision, and operator dashboards.</li>
+      <li>Developed two EdTech AMRs with full navigation stacks (one ROS, one ROS2); these platforms helped the company secure a ₹1-crore project.</li>
+      <li>Built NETSCOUT — an autonomous network-scouting AMR: WiFi-analysis turret, custom waypoint control (5–10 mm accuracy), and WiFi heatmapping over a LiDAR map.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="entry__top">
+      <div><span class="entry__role">Robotics Engineer — R&amp;D (Contract)</span>, <span class="entry__org">Bannari Amman Institute of Technology</span></div>
+      <div class="entry__meta">Mar 2024 – May 2024 · Sathyamangalam, TN</div>
+    </div>
+    <ul>
+      <li>Designed and developed an Autonomous Mobile Robot (ROS) for Intec Expo 2024 — owned the navigation stack, sensor interfacing, and real-time control.</li>
+      <li>Implemented path planning and obstacle avoidance; integrated hardware and software for a reliable live demonstration.</li>
+    </ul>
+  </div>
+  <h2>Key Projects</h2>
+  <div class="proj"><b>Autonomous Six-Axis Sorting Robot</b><span class="tag">PATENT APPLIED</span>
+    <p>From-scratch 6-DOF arm with custom inverse kinematics and deep-learning 3D vision for autonomous warehouse package sorting. (Flipkart GRID 5.0)</p></div>
+  <div class="proj"><b>Next-Gen Crime Detection System</b><span class="tag">KAVACH 2023 — WINNER</span>
+    <p>Deep-learning vision on CCTV that flags criminal activity in real time to a centralized incident dashboard. Featured in The Hindu.</p></div>
+  <div class="proj"><b>mmWave Waveguide — Single-Person Vital-Sign Detection</b><span class="tag">R&amp;D</span>
+    <p>Custom-fabricated pyramidal waveguide focusing a 60 GHz radar beam to isolate one subject for accurate heart-rate &amp; respiration sensing.</p></div>
+  <div class="proj"><b>Medical Emergency Response Drone</b><span class="tag">SIH 2022 — 2ND RUNNER-UP</span>
+    <p>GPS-guided drone that reaches accident sites and triages injury severity via deep learning, alerting the nearest hospital.</p></div>
+
+  <h2>Achievements &amp; Recognition</h2>
+  <ul class="ach">
+    <li><b>KAVACH 2023</b> — National Winner (Govt. of India)</li>
+    <li><b>Smart India Hackathon 2022</b> — 2nd Runner-Up (₹50,000)</li>
+    <li><b>Flipkart GRID 4.0</b> — Excellence Award (Robotics)</li>
+    <li><b>Flipkart GRID 5.0</b> — National Finalist</li>
+    <li><b>Hackfest 2023</b> — Finalist (Mistral internship offer)</li>
+    <li><b>Aerathon 2023 (SAE)</b> — 23rd, national</li>
+    <li><b>Patent Applied</b> — Six-Axis Pick-&amp;-Place Robot (3D camera)</li>
+    <li><b>Publication</b> — Quadruped robot, IRE Journals 7(4), 2023</li>
+  </ul>
+
+  <h2>Technical Skills</h2>
+  <div class="skill"><span class="k">Robotics &amp; Autonomy</span><span class="v">ROS / ROS2, SLAM, Nav2, Perception, Forward &amp; Inverse Kinematics, Sensor Fusion, Foxglove Studio</span></div>
+  <div class="skill"><span class="k">Computer Vision / AI</span><span class="v">OpenCV, YOLO, Roboflow, Deep Learning, Object Detection</span></div>
+  <div class="skill"><span class="k">Programming</span><span class="v">Python, C++</span></div>
+  <div class="skill"><span class="k">Embedded &amp; Electronics</span><span class="v">ESP32 / STM32, UART · I²C · SPI · CAN · RS-485, sensor / driver / encoder integration, testing &amp; troubleshooting</span></div>
+  <div class="skill"><span class="k">Drones &amp; RF</span><span class="v">Drone design, Pixhawk, PX4 / ArduPilot, CFD simulation; Waveguide design, RF analysis, mmWave</span></div>
+  <div class="skill"><span class="k">CAD, Mechanical &amp; Fabrication</span><span class="v">SolidWorks (+ simulation), Onshape, sheet metal, gears &amp; transmissions, 3D printing, MIG welding, laser/CNC, lathe &amp; milling</span></div>
+  <div class="skill"><span class="k">IoT, HMI &amp; Controls</span><span class="v">IoT (MQTT), Node-RED, HMI design, control-panel wiring</span></div>
+
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="entry__top">
+      <div><span class="entry__role">B.E. — Electronics &amp; Instrumentation</span> (Robotics &amp; Automation), <span class="entry__org">Bannari Amman Institute of Technology</span></div>
+      <div class="entry__meta">Oct 2020 – May 2024 · CGPA 8.1</div>
+    </div>
+  </div>
+
+</body>
+</html>
