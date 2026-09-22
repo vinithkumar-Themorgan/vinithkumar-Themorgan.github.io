@@ -415,14 +415,19 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 .carousel__track::-webkit-scrollbar { display: none; }
 .carousel__slide { flex: 0 0 100%; width: 100%; height: 100%; scroll-snap-align: center; display: grid; place-items: center; background: #21252e; position: relative; overflow: hidden; }
 .carousel__bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: blur(24px) brightness(.42); transform: scale(1.15); z-index: 0; }
-.modal__media--gallery { aspect-ratio: 4 / 3; }
-.modal__media .carousel__slide img { position: relative; z-index: 1; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
+/* Image galleries: frame sizes to the image (capped), so the WHOLE photo shows */
+.modal__media--gallery { aspect-ratio: auto; height: auto; }
+.modal__media--gallery .carousel,
+.modal__media--gallery .carousel__track,
+.modal__media--gallery .carousel__slide { height: auto; }
+.modal__media--gallery .carousel__slide { min-height: 220px; }
+.modal__media .carousel__slide img { position: relative; z-index: 1; display: block; margin: auto; width: auto; height: auto; max-width: 100%; max-height: 72vh; object-fit: contain; }
 .carousel__btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: rgba(18,20,27,.6); backdrop-filter: blur(6px); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .2s, transform .2s; z-index: 3; }
 .carousel__btn:hover { background: var(--accent); color: #04121a; border-color: transparent; }
 .carousel__btn--prev { left: 12px; }
 .carousel__btn--next { right: 12px; }
 .carousel__count { position: absolute; bottom: 12px; right: 14px; z-index: 3; font-family: var(--font-mono); font-size: .78rem; padding: 4px 11px; border-radius: 999px; background: rgba(18,20,27,.65); border: 1px solid rgba(255,255,255,.16); color: #fff; backdrop-filter: blur(6px); }
-.modal__media video, .modal__media iframe, .modal__media img { width: 100%; height: 100%; border: 0; object-fit: cover; }
+.modal__media video, .modal__media iframe { width: 100%; height: 100%; border: 0; object-fit: cover; }
 .modal__media-empty { display: grid; place-items: center; height: 100%; color: #8b84ac; font-family: var(--font-mono); }
 .modal__body { padding: 30px; }
 .modal__cat { font-family: var(--font-mono); font-weight: 400; color: var(--accent-deep); font-size: .78rem; text-transform: uppercase; letter-spacing: 1px; }
