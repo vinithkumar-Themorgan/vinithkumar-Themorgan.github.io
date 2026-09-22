@@ -387,7 +387,7 @@ var PROJECTS = [
     short: "Designed and built custom testing jigs for reliable, repeatable hardware validation.",
     meta: "Company project",
     description:
-      "Designed and fabricated custom testing jigs to validate hardware quickly and repeatably across development and production.",
+      "Custom testing jigs to validate hardware quickly and repeatably across development and production.",
     highlights: [
       "Custom mechanical / electrical jigs for repeatable testing",
       "Faster, more consistent hardware validation",
