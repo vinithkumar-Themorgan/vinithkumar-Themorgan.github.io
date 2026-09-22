@@ -413,8 +413,10 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 .carousel { position: relative; width: 100%; height: 100%; }
 .carousel__track { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; }
 .carousel__track::-webkit-scrollbar { display: none; }
-.carousel__slide { flex: 0 0 100%; width: 100%; height: 100%; scroll-snap-align: center; display: grid; place-items: center; background: #21252e; }
-.modal__media .carousel__slide img { width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
+.carousel__slide { flex: 0 0 100%; width: 100%; height: 100%; scroll-snap-align: center; display: grid; place-items: center; background: #21252e; position: relative; overflow: hidden; }
+.carousel__bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: blur(24px) brightness(.42); transform: scale(1.15); z-index: 0; }
+.modal__media--gallery { aspect-ratio: 4 / 3; }
+.modal__media .carousel__slide img { position: relative; z-index: 1; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
 .carousel__btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: rgba(18,20,27,.6); backdrop-filter: blur(6px); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .2s, transform .2s; z-index: 3; }
 .carousel__btn:hover { background: var(--accent); color: #04121a; border-color: transparent; }
 .carousel__btn--prev { left: 12px; }

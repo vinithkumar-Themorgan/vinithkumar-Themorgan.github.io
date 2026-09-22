@@ -253,7 +253,7 @@ function buildMedia(p) {
   const imgs = p.gallery || [];
   if (imgs.length) {
     const slides = imgs.map((src) =>
-      `<div class="carousel__slide"><img src="${src}" alt="${p.title}" loading="lazy"></div>`).join("");
+      `<div class="carousel__slide"><span class="carousel__bg" style="background-image:url('${src}')"></span><img src="${src}" alt="${p.title}" loading="lazy"></div>`).join("");
     const multi = imgs.length > 1;
     return `<div class="carousel">
       <div class="carousel__track">${slides}</div>
@@ -284,6 +284,7 @@ function initCarousel(root) {
 function openModal(p) {
   const media = document.getElementById("modalMedia");
   media.innerHTML = buildMedia(p);
+  media.classList.toggle("modal__media--gallery", !p.video && (p.gallery || []).length > 0);
   initCarousel(media);
   document.getElementById("modalCat").textContent = p.catLabel;
   document.getElementById("modalTitle").textContent = p.title;
