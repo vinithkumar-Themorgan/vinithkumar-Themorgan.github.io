@@ -384,7 +384,7 @@ var PROJECTS = [
   {
     category: "industrial", catLabel: "Hardware · Company",
     title: "Custom Testing Jigs",
-    short: "Designed and built custom testing jigs for reliable, repeatable hardware validation.",
+    short: "custom testing jigs for reliable, repeatable hardware validation.",
     meta: "Company project",
     description:
       "Custom testing jigs to validate hardware quickly and repeatably across development and production.",
@@ -393,9 +393,9 @@ var PROJECTS = [
       "Faster, more consistent hardware validation",
     ],
     tech: ["Fixture Design", "Electronics Testing", "Fabrication", "QA"],
-    thumb: "assets/media/img/2566.jpeg",
+    thumb: "assets/media/img/2566.jpg",
     video: null,
-    gallery: ["assets/media/img/2566.jpeg", "assets/media/img/2565.jpeg"],
+    gallery: ["assets/media/img/2566.jpg", "assets/media/img/2565.jpg"],
     links: [],
   },
 ];
