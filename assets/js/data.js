@@ -393,8 +393,10 @@ var PROJECTS = [
       "Faster, more consistent hardware validation",
     ],
     tech: ["Fixture Design", "Electronics Testing", "Fabrication", "QA"],
-    thumb: "assets/media/thumbs/testing-jigs.jpg",
-    video: null, gallery: [], links: [],
+    thumb: "assets/media/img/2566.jpeg",
+    video: null,
+    gallery: ["assets/media/img/2566.jpeg", "assets/media/img/2565.jpeg"],
+    links: [],
   },
 ];
 
