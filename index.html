@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&family=Play:wght@400;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/style.css?v=20260926c" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260926d" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%96%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
@@ -55,7 +55,15 @@
 
   <main>
     <!-- ============ HERO ============ -->
-    <section class="hero" id="hero">
+    <section class="hero hero--full" id="hero">
+      <div class="hero__bg" id="heroPhoto">
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="assets/media/img/hero-poster.jpg"
+               aria-label="Journey of Creations — robotics project showreel by Vinith Kumar T">
+          <source src="assets/media/video/hero.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero__scrim" aria-hidden="true"></div>
       <div class="hero__grid">
         <div class="hero__aside reveal">
           <span class="hero__pill"><span class="status-dot"></span> Available for opportunities</span>
@@ -79,18 +87,8 @@
             </div>
           </div>
         </div>
-
-        <div class="hero__stage reveal">
-          <div class="hero__photo" id="heroPhoto">
-            <video autoplay muted loop playsinline preload="metadata"
-                   poster="assets/media/img/hero-poster.jpg"
-                   aria-label="Journey of Creations — robotics project showreel by Vinith Kumar T">
-              <source src="assets/media/video/hero.mp4" type="video/mp4" />
-            </video>
-            <span class="hero__photo-fallback">🤖<br><small>Add hero video →<br><code>assets/media/video/hero.mp4</code></small></span>
-          </div>
-        </div>
       </div>
+      <a href="#about" class="hero__scroll" aria-label="Scroll down"><span></span></a>
     </section>
 
     <!-- ============ TECH TICKER ============ -->
@@ -391,7 +389,7 @@
     </div>
   </div>
 
-  <script src="assets/js/data.js?v=20260926c"></script>
-  <script src="assets/js/main.js?v=20260926c"></script>
+  <script src="assets/js/data.js?v=20260926d"></script>
+  <script src="assets/js/main.js?v=20260926d"></script>
 </body>
 </html>

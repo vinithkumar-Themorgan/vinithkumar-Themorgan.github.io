@@ -590,3 +590,29 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 
 /* --- Section titles: a rising gradient accent under the eyebrow --- */
 .section__head .eyebrow { position: relative; display: inline-block; }
+
+/* ===================================================================
+   ⛶ FULL-SCREEN CINEMATIC HERO  (trial · revert: git tag pre-fullscreen-hero)
+   Showreel fills the viewport; text overlaid on a readable scrim.
+   =================================================================== */
+.hero--full { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: 0; overflow: hidden; background: var(--dark); }
+.hero--full::before { display: none; }               /* drop the old glow layer — the video is the background now */
+.hero--full .hero__bg { position: absolute; inset: 0; z-index: 0; }
+.hero--full .hero__bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero--full .hero__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(16,19,30,.95) 0%, rgba(16,19,30,.80) 32%, rgba(16,19,30,.34) 66%, rgba(16,19,30,.64) 100%),
+    linear-gradient(0deg, rgba(16,19,30,.85) 0%, transparent 40%),
+    radial-gradient(120% 120% at 50% 42%, transparent 54%, rgba(6,5,14,.6)); }
+.hero--full::after { z-index: 1; }                    /* cursor glow rides above the scrim, below the text */
+.hero--full .hero__grid { position: relative; z-index: 2; display: block; width: 100%; max-width: var(--maxw); margin-inline: auto; padding: 120px clamp(16px, 4vw, 40px) 100px; }
+.hero--full .hero__aside { max-width: 740px; }
+.hero--full .hero__title { font-size: clamp(2.4rem, 5.4vw, 4.6rem); text-shadow: 0 2px 30px rgba(0,0,0,.45); }
+.hero--full .hero__lead { max-width: 640px; }
+
+/* scroll-down cue */
+.hero__scroll { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 3; width: 26px; height: 42px; border: 2px solid rgba(255,255,255,.5); border-radius: 999px; display: grid; justify-items: center; padding-top: 7px; transition: border-color .2s; }
+.hero__scroll:hover { border-color: var(--cyan); }
+.hero__scroll span { width: 4px; height: 8px; border-radius: 2px; background: #fff; animation: scrollDot 1.6s ease-in-out infinite; }
+@keyframes scrollDot { 0% { opacity: 0; transform: translateY(-4px); } 40% { opacity: 1; } 80%, 100% { opacity: 0; transform: translateY(10px); } }
+@media (max-width: 720px) { .hero--full .hero__grid { padding-top: 128px; padding-bottom: 84px; } .hero__scroll { display: none; } }
