@@ -590,3 +590,92 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 
 /* --- Section titles: a rising gradient accent under the eyebrow --- */
 .section__head .eyebrow { position: relative; display: inline-block; }
+
+/* ===================================================================
+   ⟡ VIWEBSYNC — DARK FUTURIST THEME  (trial · revert: git tag pre-viwebsync-theme)
+   Deep navy canvas · electric-blue + amber accents · geometric display type
+   =================================================================== */
+:root {
+  --paper:     #080b16;   /* deep navy canvas */
+  --surface:   #10162a;   /* card */
+  --surface-2: #161d35;   /* raised */
+  --ink:       #eef3ff;   /* headings */
+  --ink-2:     #c4d0ea;
+  --body:      #97a4c3;   /* body text */
+  --muted:     #808dac;
+  --muted-2:   #5d6a89;
+  --line:      #212b46;
+  --line-2:    #2d3958;
+
+  --dark:      #10182e;   /* raised navy for bands/hero base */
+  --dark-2:    #151d38;
+  --paper-text:#eef3ff;
+  --paper-dim: rgba(238,243,255,0.72);
+
+  --cyan:       #4d7cff;  /* electric blue accent */
+  --cyan-2:     #7aa2ff;
+  --gold:       #ff9a3c;  /* amber */
+  --gold-2:     #ffb968;
+  --violet:     #8b5cf6;
+  --accent:     #4d7cff;
+  --accent-deep:#8fb0ff;  /* light blue for on-dark labels/links */
+
+  --grad:      linear-gradient(120deg, #4d7cff, #8b5cf6);
+  --grad-fuse: linear-gradient(120deg, #4d7cff, #7b6cf6 45%, #ff9a3c);
+
+  --tint-1: rgba(77,124,255,.14);  --tint-1-bd: rgba(77,124,255,.34);
+  --tint-2: rgba(255,154,60,.14);  --tint-2-bd: rgba(255,154,60,.34);
+  --tint-3: rgba(139,92,246,.16);  --tint-3-bd: rgba(139,92,246,.36);
+
+  --shadow:    0 16px 40px rgba(0,0,0,0.45);
+  --shadow-lg: 0 30px 70px rgba(0,0,0,0.60);
+  --glow:      0 10px 30px rgba(77,124,255,0.40);
+  --font-head: 'Space Grotesk', 'Josefin Sans', system-ui, sans-serif;
+}
+html { color-scheme: dark; }
+body { background: var(--paper); color: var(--body); }
+::selection { background: var(--cyan); color: #fff; }
+
+/* Nav on a dark canvas */
+.nav.scrolled { background: rgba(8,11,22,.85); box-shadow: 0 6px 22px rgba(0,0,0,.5); }
+.nav.scrolled .nav__logo { color: var(--ink); }
+.nav.scrolled .nav__links a { color: var(--ink-2); }
+.nav.scrolled .nav__links a:not(.nav__cta):hover { color: var(--cyan-2); }
+.nav.scrolled .nav__toggle span { background: var(--ink); }
+@media (max-width: 720px) {
+  .nav__links { background: var(--surface); box-shadow: -10px 0 40px rgba(0,0,0,.5); }
+  .nav__links a, .nav.scrolled .nav__links a { color: var(--ink-2); }
+  .nav__toggle.is-open span { background: var(--ink); }
+}
+
+/* Grain subtler on true dark */
+.fx__grain { opacity: .035; }
+
+/* Hero + band ambient light in blue/amber, navy base + vignette */
+.hero::before {
+  background:
+    radial-gradient(135% 130% at 50% 44%, transparent 52%, rgba(2,4,12,.72)),
+    radial-gradient(720px 460px at 80% 4%, rgba(77,124,255,0.26), transparent 60%),
+    radial-gradient(680px 520px at 6% 94%, rgba(255,154,60,0.15), transparent 55%),
+    radial-gradient(560px 440px at 50% 40%, rgba(139,92,246,0.20), transparent 60%),
+    var(--dark);
+}
+.dark-band::before {
+  background:
+    radial-gradient(140% 135% at 50% 50%, transparent 58%, rgba(2,4,12,.55)),
+    radial-gradient(760px 420px at 82% -5%, rgba(77,124,255,0.18), transparent 60%),
+    radial-gradient(680px 460px at 2% 108%, rgba(255,154,60,0.12), transparent 55%),
+    var(--dark);
+}
+.hero::after { background: radial-gradient(460px 460px at var(--mx,78%) var(--my,16%), rgba(122,162,255,0.22), transparent 62%); }
+
+/* White-surface controls that carried dark ink text — keep them legible */
+.modal__close { background: #fff; color: #0a0e1a; }
+.contact .btn--dark { background: #fff; color: #0a0e1a; }
+.contact .btn--dark:hover { background: var(--gold); color: #201200; }
+
+/* Small dark-mode touch-ups */
+.tl-item::before { background: var(--surface); }
+.tag { color: var(--cyan-2); }
+.xrow:hover { box-shadow: var(--shadow); }
+.footer { border-top-color: var(--line); }
