@@ -337,3 +337,31 @@ document.addEventListener("keydown", (e) => e.key === "Escape" && closeModal());
 
 /* ---------- Kick off reveals after dynamic content is injected ---------- */
 observeReveals();
+
+/* ---------- Cinematic hero: cursor-reactive glow + subtle 3D parallax ---------- */
+(function heroFX() {
+  const hero = document.getElementById("hero");
+  if (!hero) return;
+  const stage = hero.querySelector(".hero__stage");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const coarse = window.matchMedia("(pointer: coarse)").matches;
+  if (reduce || coarse) return;
+  let raf = 0;
+  hero.addEventListener("pointermove", (e) => {
+    const r = hero.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      hero.style.setProperty("--mx", (x * 100).toFixed(1) + "%");
+      hero.style.setProperty("--my", (y * 100).toFixed(1) + "%");
+      if (stage) stage.style.transform =
+        `rotateX(${((0.5 - y) * 5).toFixed(2)}deg) rotateY(${((x - 0.5) * 7).toFixed(2)}deg) translateY(${((0.5 - y) * 10).toFixed(1)}px)`;
+    });
+  });
+  hero.addEventListener("pointerleave", () => {
+    hero.style.removeProperty("--mx");
+    hero.style.removeProperty("--my");
+    if (stage) stage.style.transform = "";
+  });
+})();

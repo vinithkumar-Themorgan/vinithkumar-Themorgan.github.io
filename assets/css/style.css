@@ -445,8 +445,8 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 .modal__links { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* ---------- Reveal ---------- */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-.reveal.is-visible { opacity: 1; transform: none; }
+.reveal { opacity: 0; transform: translateY(30px) scale(.985); filter: blur(8px); transition: opacity .85s var(--ease), transform .85s var(--ease), filter .85s var(--ease); }
+.reveal.is-visible { opacity: 1; transform: none; filter: none; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
@@ -477,6 +477,116 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 1; transform: none; filter: none; }
   .ticker__track { animation: none; }
+  .fx__grain { animation: none; }
 }
+
+/* ===================================================================
+   ✦ CINEMATIC LAYER  — film grain, ambient light, motion, depth
+   =================================================================== */
+
+/* --- Film grain overlay (global, filmic) --- */
+.fx { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
+.fx__grain {
+  position: absolute; inset: -60%; width: 220%; height: 220%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .05; mix-blend-mode: overlay;
+  animation: grain 6s steps(6) infinite;
+}
+@keyframes grain {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-6%, 4%); }
+  40%  { transform: translate(4%, -6%); }
+  60%  { transform: translate(-4%, -4%); }
+  80%  { transform: translate(6%, 6%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- Dark scenes: add a cinematic vignette above the ambient glows --- */
+.hero::before {
+  background:
+    radial-gradient(135% 130% at 50% 44%, transparent 55%, rgba(6,5,14,.62)),
+    radial-gradient(720px 460px at 78% 6%, rgba(0,191,231,0.22), transparent 60%),
+    radial-gradient(680px 520px at 8% 92%, rgba(250,173,59,0.16), transparent 55%),
+    radial-gradient(520px 420px at 50% 40%, rgba(124,77,219,0.18), transparent 60%),
+    var(--dark);
+}
+.dark-band::before {
+  background:
+    radial-gradient(140% 135% at 50% 50%, transparent 60%, rgba(6,5,14,.5)),
+    radial-gradient(760px 420px at 82% -5%, rgba(0,191,231,0.16), transparent 60%),
+    radial-gradient(680px 460px at 2% 108%, rgba(250,173,59,0.13), transparent 55%),
+    var(--dark);
+}
+
+/* --- Hero: cursor-reactive spotlight (driven by --mx/--my from JS) --- */
+.hero::after {
+  content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: 50%; width: 100vw;
+  transform: translateX(-50%); pointer-events: none;
+  background: radial-gradient(460px 460px at var(--mx, 78%) var(--my, 16%), rgba(69,214,245,0.20), transparent 62%);
+  transition: background .25s ease;
+}
+/* Hero stage gets 3D depth for the parallax tilt */
+.hero__grid { perspective: 1300px; }
+.hero__stage { transform-style: preserve-3d; transition: transform .35s var(--ease); will-change: transform; }
+/* Cinematic vignette + sheen framing the showreel */
+.hero__photo::after {
+  background: radial-gradient(125% 120% at 50% 42%, transparent 60%, rgba(6,5,14,.55));
+}
+.hero__photo::before {
+  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(120deg, rgba(255,255,255,.10) 0%, transparent 34%);
+}
+
+/* --- Living signature gradient text --- */
+.grad {
+  background: linear-gradient(120deg, #00bfe7, #7c4ddb 42%, #faad3b 70%, #00bfe7 100%);
+  background-size: 240% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: gradFlow 9s linear infinite;
+}
+@keyframes gradFlow { to { background-position: 240% 0; } }
+
+/* --- Reveal stagger inside the card grids --- */
+.skills__grid > *:nth-child(2), #projectsGrid > *:nth-child(2), .ach-grid > *:nth-child(2) { transition-delay: .06s; }
+.skills__grid > *:nth-child(3), #projectsGrid > *:nth-child(3), .ach-grid > *:nth-child(3) { transition-delay: .12s; }
+.skills__grid > *:nth-child(4), #projectsGrid > *:nth-child(4), .ach-grid > *:nth-child(4) { transition-delay: .18s; }
+.skills__grid > *:nth-child(5), #projectsGrid > *:nth-child(5), .ach-grid > *:nth-child(5) { transition-delay: .10s; }
+.skills__grid > *:nth-child(6), #projectsGrid > *:nth-child(6), .ach-grid > *:nth-child(6) { transition-delay: .16s; }
+
+/* --- Cinematic card hover: lift + cyan glow + image push-in --- */
+.project-card { transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease); }
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0,191,231,.35), 0 22px 60px rgba(0,191,231,.20);
+}
+.project-card__media::after {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,.22) 50%, transparent 65%);
+  transform: translateX(-100%); transition: opacity .1s;
+}
+.project-card:hover .project-card__media::after { opacity: 1; animation: sheen .7s var(--ease); }
+@keyframes sheen { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+.skill-card { transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+.skill-card:hover { box-shadow: var(--shadow-lg), 0 0 0 1px rgba(124,77,219,.28); }
+
+/* --- Buttons: light sweep on hover --- */
+.btn { position: relative; overflow: hidden; }
+.btn > * { position: relative; z-index: 1; }
+.btn--dark::before, .nav__cta::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.4) 50%, transparent 70%);
+  transform: translateX(-130%); transition: transform .6s var(--ease);
+}
+.btn--dark:hover::before, .nav__cta:hover::before { transform: translateX(130%); }
+
+/* --- Nav logo mark: soft breathing glow --- */
+.nav__logo-mark { animation: markGlow 4.5s ease-in-out infinite; }
+@keyframes markGlow {
+  0%, 100% { box-shadow: 0 6px 18px rgba(0,191,231,.30); }
+  50%      { box-shadow: 0 8px 30px rgba(124,77,219,.55); }
+}
+
+/* --- Section titles: a rising gradient accent under the eyebrow --- */
+.section__head .eyebrow { position: relative; display: inline-block; }
