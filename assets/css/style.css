@@ -595,9 +595,11 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
    ⛶ FULL-SCREEN CINEMATIC HERO  (trial · revert: git tag pre-fullscreen-hero)
    Showreel fills the viewport; text overlaid on a readable scrim.
    =================================================================== */
+/* Root canvas dark so the mobile address-bar retract can't flash a white sliver at the very top */
+html { background: var(--dark); }
 .hero--full { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: 0; overflow: hidden; background: var(--dark); }
 .hero--full::before { display: none; }               /* drop the old glow layer — the video is the background now */
-.hero--full .hero__bg { position: absolute; inset: 0; z-index: 0; }
+.hero--full .hero__bg { position: absolute; top: -2px; left: 0; right: 0; bottom: -2px; z-index: 0; }
 .hero--full .hero__bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hero--full .hero__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
