@@ -574,12 +574,12 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--ink); font-weight: 
 /* --- Buttons: light sweep on hover --- */
 .btn { position: relative; overflow: hidden; }
 .btn > * { position: relative; z-index: 1; }
-.btn--dark::before, .nav__cta::before {
+.btn--dark::before {
   content: ''; position: absolute; inset: 0; z-index: 0;
   background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.4) 50%, transparent 70%);
   transform: translateX(-130%); transition: transform .6s var(--ease);
 }
-.btn--dark:hover::before, .nav__cta:hover::before { transform: translateX(130%); }
+.btn--dark:hover::before { transform: translateX(130%); }
 
 /* --- Nav logo mark: soft breathing glow --- */
 .nav__logo-mark { animation: markGlow 4.5s ease-in-out infinite; }
