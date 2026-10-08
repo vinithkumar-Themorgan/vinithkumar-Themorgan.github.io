@@ -230,8 +230,10 @@ var PROJECTS = [
       "Validated in Gazebo / ROS — peer-reviewed publication",
     ],
     tech: ["ROS", "Gazebo", "Inverse Kinematics", "Quadruped", "CAD"],
-    thumb: "assets/media/thumbs/quadruped.jpg",
-    video: null, gallery: [], links: [],
+    thumb: "assets/media/img/quadruped-robot.jpg",
+    video: null,
+    gallery: ["assets/media/img/quadruped-robot.jpg"],
+    links: [],
   },
   {
     category: "arm", catLabel: "Manipulator",
