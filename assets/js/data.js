@@ -199,6 +199,24 @@ var PROJECTS = [
     video: { type: "mp4", src: "assets/media/video/S1.mp4" }, gallery: [], links: [],
   },
   {
+    category: "amr", catLabel: "AMR · R&D",
+    title: "Autonomous Mobile Robot",
+    short: "ROS-based AMR built in an R&D environment for Intec Expo 2024 — navigation, sensing and real-time control.",
+    meta: "R&D · Intec Expo 2024",
+    description:
+      "Programmed an Autonomous Mobile Robot using ROS in an R&D environment for Intec Expo 2024. Owned the navigation stack, sensor interfacing and real-time control — implementing path planning and obstacle avoidance, and integrating hardware and software for a reliable live demonstration.",
+    highlights: [
+      "Owned the navigation stack, sensor interfacing and real-time control",
+      "Implemented path planning & obstacle avoidance",
+      "Integrated hardware + software for a reliable live demonstration",
+    ],
+    tech: ["ROS", "Navigation", "Path Planning", "Obstacle Avoidance", "Sensor Interfacing"],
+    thumb: "assets/media/img/amr-intec.jpg",
+    video: null,
+    gallery: ["assets/media/img/amr-intec.jpg"],
+    links: [],
+  },
+  {
     category: "amr", catLabel: "Quadruped",
     title: "Quadruped Robot for Elderly Assistance",
     short: "Four-legged robot designed and simulated with inverse kinematics in Gazebo (ROS).",
