@@ -246,7 +246,7 @@ function buildMedia(p) {
       return `<iframe src="https://www.youtube.com/embed/${video.id}" title="Project video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>`;
-    return `<video src="${video.src}" controls playsinline preload="metadata"
+    return `<video src="${video.src}" controls playsinline webkit-playsinline preload="metadata"
               onerror="this.outerHTML='&lt;div class=\\'modal__media-empty\\'&gt;🎬 Add video: ${video.src}&lt;/div&gt;'"></video>`;
   }
   // No video? Show a swipeable image carousel (scroll / arrows to move between images).
@@ -337,6 +337,22 @@ document.addEventListener("keydown", (e) => e.key === "Escape" && closeModal());
 
 /* ---------- Kick off reveals after dynamic content is injected ---------- */
 observeReveals();
+
+/* ---------- iOS/iPad: coax the hero showreel to autoplay ---------- */
+(function heroVideoPlay() {
+  const v = document.querySelector(".hero__bg video");
+  if (!v) return;
+  v.muted = true;                 // required for autoplay on iOS
+  v.setAttribute("muted", "");
+  v.playsInline = true;
+  const tryPlay = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+  tryPlay();
+  // iOS often blocks autoplay until the first interaction — retry then.
+  ["touchstart", "pointerdown", "click", "scroll"].forEach((evt) =>
+    window.addEventListener(evt, tryPlay, { once: true, passive: true }));
+  // Also retry when the tab/app becomes visible again.
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) tryPlay(); });
+})();
 
 /* ---------- Cinematic hero: cursor-reactive glow + subtle 3D parallax ---------- */
 (function heroFX() {
