@@ -418,6 +418,23 @@ var PROJECTS = [
     gallery: ["assets/media/img/2566.jpg", "assets/media/img/2565.jpg"],
     links: [],
   },
+  {
+    category: "industrial", catLabel: "Controls · Company",
+    title: "Control Panel Design & Build",
+    short: "Design and build of an industrial control panel at Robolog Automation.",
+    meta: "Robolog Automation",
+    description:
+      "Design and build of an industrial control panel at Robolog Automation — component selection and layout, wiring and assembly for reliable, safe machine control.",
+    highlights: [
+      "Complete control-panel design — layout, component selection and wiring",
+      "Built and assembled for reliable, safe machine control",
+    ],
+    tech: ["Control Panel Design", "Electrical Wiring", "Industrial Automation", "Fabrication"],
+    thumb: "assets/media/img/control-panel.jpg",
+    video: null,
+    gallery: ["assets/media/img/control-panel.jpg"],
+    links: [],
+  },
 ];
 
 /* -------------------------------------------------------------------
