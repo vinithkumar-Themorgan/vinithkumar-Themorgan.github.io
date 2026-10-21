@@ -11,12 +11,19 @@ const nav = document.getElementById("nav");
 const navToggle = document.getElementById("navToggle");
 const navLinks = document.getElementById("navLinks");
 
+const progressEl = document.getElementById("scrollProgress");
+let scrollTicking = false;
 window.addEventListener("scroll", () => {
-  nav.classList.toggle("scrolled", window.scrollY > 20);
-  const h = document.documentElement;
-  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-  document.getElementById("scrollProgress").style.width = pct + "%";
-});
+  if (scrollTicking) return;
+  scrollTicking = true;
+  requestAnimationFrame(() => {
+    nav.classList.toggle("scrolled", window.scrollY > 20);
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    if (progressEl) progressEl.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+    scrollTicking = false;
+  });
+}, { passive: true });
 
 navToggle.addEventListener("click", () => {
   navLinks.classList.toggle("is-open");
