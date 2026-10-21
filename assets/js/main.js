@@ -128,6 +128,15 @@ document.querySelectorAll(".metric__num").forEach((el) => statObserver.observe(e
   }
 })();
 
+/* ---------- Where each project was built ---------- */
+function projectPlace(p) {
+  if (p && p.place) return p.place;
+  const t = ((p && p.title) || "").toLowerCase();
+  const robolog = t.includes("edtech amr") || t.includes("netscout") ||
+    t.includes("burner") || t.includes("testing jig") || t.includes("control panel");
+  return robolog ? "Robolog Automation" : "Bannari Amman Institute of Technology";
+}
+
 /* ---------- Render PROJECTS ---------- */
 (function renderProjects() {
   const grid = document.getElementById("projectsGrid");
@@ -146,6 +155,7 @@ document.querySelectorAll(".metric__num").forEach((el) => statObserver.observe(e
         <h3 class="project-card__title"><span>${p.title}</span></h3>
         <p class="project-card__desc">${p.short}</p>
         <div class="project-card__tech">${p.tech.slice(0, 4).map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+        <div class="project-card__place"><span class="project-card__place-ico">📍</span> ${projectPlace(p)}</div>
       </div>
     </article>`).join("");
 
@@ -288,7 +298,10 @@ function openModal(p) {
   initCarousel(media);
   document.getElementById("modalCat").textContent = p.catLabel;
   document.getElementById("modalTitle").textContent = p.title;
-  document.getElementById("modalMeta").textContent = p.meta || "";
+  const place = projectPlace(p);
+  const meta = p.meta || "";
+  document.getElementById("modalMeta").textContent =
+    meta.includes(place.split(" ")[0]) ? meta : (meta ? meta + "  ·  📍 " + place : "📍 " + place);
   const aw = document.getElementById("modalAward");
   aw.textContent = p.award || "";
   aw.style.display = p.award ? "inline-block" : "none";
